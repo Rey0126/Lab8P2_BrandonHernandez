@@ -18,6 +18,8 @@ public class Carro implements Serializable{
     private int vp;
     private int tiempo;
     private ArrayList<Partes> partes = new ArrayList();
+    
+    private static final long serialUID = 712L;
 
     public Carro() {
     }

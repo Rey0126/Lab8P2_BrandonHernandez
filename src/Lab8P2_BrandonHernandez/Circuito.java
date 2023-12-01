@@ -7,6 +7,8 @@ public class Circuito implements Serializable{
     private int curvas;
     private String tipo;
     private String locacion;
+    
+    private static final long serialUID = 444L;
 
     public Circuito() {
     }

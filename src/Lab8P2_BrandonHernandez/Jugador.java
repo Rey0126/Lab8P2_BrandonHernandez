@@ -11,6 +11,8 @@ public class Jugador implements Serializable{
     private String user;
     private String pass;
     private double saldo;
+    
+    private static final long serialUID = 0126L;
 
     public Jugador() {
     }

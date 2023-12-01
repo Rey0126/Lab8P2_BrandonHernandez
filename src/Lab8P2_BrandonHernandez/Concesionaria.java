@@ -8,6 +8,8 @@ public class Concesionaria implements Serializable{
     private String name;
     private String ubi;
     private ArrayList<Carro> carrosVenta = new ArrayList();
+    
+    private static final long serialUID = 333L;
 
     public Concesionaria() {
     }
