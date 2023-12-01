@@ -22,7 +22,6 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     ArrayList<Carro> carros = new ArrayList();
-    ArrayList<Partes> partes = new ArrayList();
     ArrayList<Circuito> circuitos = new ArrayList();
     ArrayList<Concesionaria> concesionarias = new ArrayList();
     ArrayList<Jugador> jugadores = new ArrayList();
@@ -130,6 +129,15 @@ public class Main extends javax.swing.JFrame {
         btnAgregarConce = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        longitud = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        curvas = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        tipo = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        locacion = new javax.swing.JTextField();
+        btnAgregarCir = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         bttnSalirAdmin = new javax.swing.JButton();
         logIn = new javax.swing.JPanel();
@@ -713,13 +721,47 @@ public class Main extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel31.setText("Agregar Circuitos");
 
+        jLabel32.setText("Longitud:");
+
+        jLabel33.setText("Curvas:");
+
+        jLabel34.setText("Tipo:");
+
+        jLabel35.setText("Locacion:");
+
+        btnAgregarCir.setText("Agregar");
+        btnAgregarCir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarCirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(jLabel31)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel32)
+                                .addComponent(jLabel33)
+                                .addComponent(jLabel34))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel35)
+                                .addGap(13, 13, 13)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(locacion)
+                            .addComponent(curvas, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(longitud, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipo, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(btnAgregarCir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(254, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
@@ -727,7 +769,25 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel31)
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(longitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(curvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(locacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
+                .addGap(89, 89, 89)
+                .addComponent(btnAgregarCir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Circuitos", jPanel13);
@@ -1026,6 +1086,12 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Concesionaria Agregada");
     }//GEN-LAST:event_btnAgregarConceMouseClicked
 
+    private void btnAgregarCirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarCirMouseClicked
+        Circuito c = new Circuito(Integer.parseInt(longitud.getText()), Integer.parseInt(curvas.getText()), tipo.getText(), locacion.getText());
+        circuitos.add(c);
+        JOptionPane.showMessageDialog(this, "Circuito Agregado");
+    }//GEN-LAST:event_btnAgregarCirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1062,6 +1128,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarCir;
     private javax.swing.JButton btnAgregarConce;
     private javax.swing.JButton bttnAdmin;
     private javax.swing.JButton bttnAgregar;
@@ -1082,6 +1149,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbUbic;
     private javax.swing.JTable comprar;
     private javax.swing.JTextField correo;
+    private javax.swing.JTextField curvas;
     private com.toedter.calendar.JDateChooser fNacimiento;
     private javax.swing.JTextField hp;
     private javax.swing.JLabel jLabel1;
@@ -1109,6 +1177,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1138,7 +1210,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jtCarros;
     private javax.swing.JScrollPane jtComprar;
     private javax.swing.JScrollPane jtVender;
+    private javax.swing.JTextField locacion;
     private javax.swing.JPanel logIn;
+    private javax.swing.JTextField longitud;
     private javax.swing.JTextField nCorreo;
     private javax.swing.JTextField nName;
     private javax.swing.JTextField nPais;
@@ -1152,6 +1226,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPasswordField pass;
     private javax.swing.JTextField precio;
     private javax.swing.JTextField tiempo;
+    private javax.swing.JTextField tipo;
     private javax.swing.JTextField user;
     private javax.swing.JDialog vAdmin;
     private javax.swing.JDialog vBuscandoU;
