@@ -144,6 +144,7 @@ public class Main extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         locacion = new javax.swing.JTextField();
         btnAgregarCir = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         bttnSalirAdmin = new javax.swing.JButton();
         logIn = new javax.swing.JPanel();
@@ -235,7 +236,11 @@ public class Main extends javax.swing.JFrame {
 
         vCrearUser.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 615, 468));
 
-        vUsuario.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -263,7 +268,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(259, 259, 259)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(840, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +303,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jtComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 908, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(bttnComprar)
                 .addGap(92, 92, 92))
         );
@@ -335,7 +340,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jtVender, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 918, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(bttnVender)
                 .addGap(93, 93, 93))
         );
@@ -386,7 +391,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(849, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,7 +435,7 @@ public class Main extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(1127, Short.MAX_VALUE)
+                .addContainerGap(331, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addGap(305, 305, 305))
             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -493,7 +498,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(296, 296, 296)
                 .addComponent(bttnEliminarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1110, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,13 +511,18 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane2.addTab("Eliminar Jugador", jPanel8);
 
         bttnSalir.setText("Salir");
+        bttnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttnSalirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(1103, Short.MAX_VALUE)
+                .addContainerGap(307, Short.MAX_VALUE)
                 .addComponent(bttnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(291, 291, 291))
         );
@@ -526,7 +536,18 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Salir :D", jPanel9);
 
-        vUsuario.getContentPane().add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout vUsuarioLayout = new javax.swing.GroupLayout(vUsuario.getContentPane());
+        vUsuario.getContentPane().setLayout(vUsuarioLayout);
+        vUsuarioLayout.setHorizontalGroup(
+            vUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        vUsuarioLayout.setVerticalGroup(
+            vUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        vAdmin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel28.setText("Agregar Concesionaria");
@@ -582,7 +603,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
                 .addComponent(btnAgregarConce, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Concesionaria", jPanel12);
@@ -759,7 +780,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tiempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(bttnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Carro", jPanel4);
@@ -836,10 +857,23 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel35))
                 .addGap(89, 89, 89)
                 .addComponent(btnAgregarCir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Circuitos", jPanel13);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 694, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Agregar Partes", jPanel14);
 
         bttnSalirAdmin.setText("SALIR");
         bttnSalirAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -862,21 +896,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(bttnSalirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Salir ", jPanel10);
 
-        javax.swing.GroupLayout vAdminLayout = new javax.swing.GroupLayout(vAdmin.getContentPane());
-        vAdmin.getContentPane().setLayout(vAdminLayout);
-        vAdminLayout.setHorizontalGroup(
-            vAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        vAdminLayout.setVerticalGroup(
-            vAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
+        vAdmin.getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 694, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -935,18 +960,18 @@ public class Main extends javax.swing.JFrame {
     private void bttnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnIniciarMouseClicked
         AdminJugador ad = new AdminJugador("./Jugadores.usr");
         ad.cargar();
+        boolean noesta = false;
         for (Jugador j : ad.getJugadores()) {
 
             if (j.getUser().equals(user.getText()) && j.getPass().equals(pass.getText())) {
-                //jugadorActual = jugadores.get(jugadores.indexOf(j));
-                vUsuario.pack();
-                vUsuario.setVisible(true);
-                vUsuario.setLocationRelativeTo(null);
+                pBar1.setMaximum(ad.getJugadores().indexOf(j) + 1);
                 break;
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrectos");
             }
         }
+        //pBar1.setMinimum(0);
+        BuscarUser bu = new BuscarUser(pBar1, vBuscandoU, vUsuario, this);
+        bu.start();
+        
     }//GEN-LAST:event_bttnIniciarMouseClicked
 
     private void bttnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnCrearMouseClicked
@@ -1162,6 +1187,28 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Circuito Agregado");
     }//GEN-LAST:event_btnAgregarCirMouseClicked
 
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+        AdminCarro ad = new AdminCarro("./Carros.car");
+        ad.cargar();
+        for (Carro c : ad.getCarros()) {
+            DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
+            Object[] datos = new Object[5];
+            datos[0] = c.getMarca();
+            datos[1] = c.getModelo();
+            datos[2] = c.getColor().getRGB();
+            datos[3] = c.getAñoF();
+            datos[4] = c.getTipo();
+            modelo.addRow(datos);
+            comprar.setModel(modelo);
+        }
+
+    }//GEN-LAST:event_jTabbedPane2StateChanged
+
+    private void bttnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnSalirMouseClicked
+        vUsuario.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_bttnSalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1266,6 +1313,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
