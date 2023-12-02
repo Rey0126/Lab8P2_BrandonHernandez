@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import lab6p2_brandonhernandez.Jugador;
 
 public class AdminJugador {
     private ArrayList<Jugador> jugadores = new ArrayList();
