@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
 
         AdminCarro ad = new AdminCarro("./Carros.car");
         ad.cargar();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
         for (Carro c : ad.getCarros()) {
             Object[] datos = new Object[5];
@@ -1248,13 +1248,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnSalirMouseClicked
 
     private void bttnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnComprarMouseClicked
+
+        System.out.println(comprar.getSelectedRow());
         if (jugadorActual.getSaldo() < carros.get(comprar.getSelectedRow()).getPrecio()) {
             JOptionPane.showMessageDialog(this, "Ocupa Plata");
         } else {
             jugadorActual.setSaldo(jugadorActual.getSaldo() - carros.get(comprar.getSelectedRow()).getPrecio());
             jugadorActual.getCarrosJ().add(carros.get(comprar.getSelectedRow()));
 
-            DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) tablaUser.getModel();
             Object[] datos = new Object[5];
             datos[0] = carros.get(comprar.getSelectedRow()).getMarca();
             datos[1] = carros.get(comprar.getSelectedRow()).getModelo();
@@ -1262,7 +1264,7 @@ public class Main extends javax.swing.JFrame {
             datos[3] = carros.get(comprar.getSelectedRow()).getAñoF();
             datos[4] = carros.get(comprar.getSelectedRow()).getTipo();
             modelo.addRow(datos);
-            comprar.setModel(modelo);
+            tablaUser.setModel(modelo);
             JOptionPane.showMessageDialog(this, "Compra Realizada");
         }
     }//GEN-LAST:event_bttnComprarMouseClicked
