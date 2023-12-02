@@ -31,6 +31,22 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        AdminCarro ad = new AdminCarro("./Carros.car");
+        ad.cargar();
+        
+        DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
+        for (Carro c : ad.getCarros()) {
+            Object[] datos = new Object[5];
+            datos[0] = c.getMarca();
+            datos[1] = c.getModelo();
+            datos[2] = c.getColor();
+            datos[3] = c.getAñoF();
+            datos[4] = c.getTipo();
+            modelo.addRow(datos);
+            comprar.setModel(modelo);
+        }
+
     }
 
     /**
@@ -63,10 +79,10 @@ public class Main extends javax.swing.JFrame {
         bttnCrearUser = new javax.swing.JButton();
         fNacimiento = new com.toedter.calendar.JDateChooser();
         vUsuario = new javax.swing.JDialog();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        tab = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
-        jtCarros = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        garaje = new javax.swing.JScrollPane();
+        tablaUser = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -74,6 +90,7 @@ public class Main extends javax.swing.JFrame {
         jtComprar = new javax.swing.JScrollPane();
         comprar = new javax.swing.JTable();
         bttnComprar = new javax.swing.JButton();
+        jProgressBar3 = new javax.swing.JProgressBar();
         jPanel11 = new javax.swing.JPanel();
         jtVender = new javax.swing.JScrollPane();
         vender = new javax.swing.JTable();
@@ -97,6 +114,7 @@ public class Main extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         bttnEliminarCuenta = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         bttnSalir = new javax.swing.JButton();
         vAdmin = new javax.swing.JDialog();
@@ -236,13 +254,7 @@ public class Main extends javax.swing.JFrame {
 
         vCrearUser.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 615, 468));
 
-        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPane2StateChanged(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -250,7 +262,7 @@ public class Main extends javax.swing.JFrame {
                 "Marca", "Modelo", "Color", "Año", "Reconstruido"
             }
         ));
-        jtCarros.setViewportView(jTable1);
+        garaje.setViewportView(tablaUser);
 
         jScrollPane2.setViewportView(jList1);
 
@@ -262,11 +274,11 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jtCarros, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(garaje, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
+                        .addGap(226, 226, 226)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
@@ -278,11 +290,11 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
-                    .addComponent(jtCarros, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                    .addComponent(garaje, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Garaje", jPanel5);
+        tab.addTab("Garaje", jPanel5);
 
         comprar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -295,31 +307,42 @@ public class Main extends javax.swing.JFrame {
         jtComprar.setViewportView(comprar);
 
         bttnComprar.setText("Comprar");
+        bttnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttnComprarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(37, 37, 37)
                 .addComponent(jtComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(bttnComprar)
-                .addGap(92, 92, 92))
+                .addGap(99, 99, 99))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jtComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                .addGap(48, 48, 48))
+                .addGap(23, 23, 23)
+                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jtComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addGap(28, 28, 28))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(237, 237, 237)
                 .addComponent(bttnComprar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Compra de Carros", jPanel6);
+        tab.addTab("Compra de Carros", jPanel6);
 
         vender.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -356,7 +379,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Venta de Carros", jPanel11);
+        tab.addTab("Venta de Carros", jPanel11);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -379,9 +402,6 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,15 +410,18 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(42, 42, 42)
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,7 +433,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(144, 144, 144))))
         );
 
-        jTabbedPane2.addTab("Instalacion de Partes", jPanel2);
+        tab.addTab("Instalacion de Partes", jPanel2);
 
         jLabel20.setText("Nombre:");
 
@@ -482,7 +505,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Modificar Jugador", jPanel7);
+        tab.addTab("Modificar Jugador", jPanel7);
 
         bttnEliminarCuenta.setText("Eliminar Cuenta");
         bttnEliminarCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -508,7 +531,20 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(257, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Eliminar Jugador", jPanel8);
+        tab.addTab("Eliminar Jugador", jPanel8);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 845, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 504, Short.MAX_VALUE)
+        );
+
+        tab.addTab("Simulacion", jPanel15);
 
         bttnSalir.setText("Salir");
         bttnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -534,17 +570,17 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(243, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Salir :D", jPanel9);
+        tab.addTab("Salir :D", jPanel9);
 
         javax.swing.GroupLayout vUsuarioLayout = new javax.swing.GroupLayout(vUsuario.getContentPane());
         vUsuario.getContentPane().setLayout(vUsuarioLayout);
         vUsuarioLayout.setHorizontalGroup(
             vUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         vUsuarioLayout.setVerticalGroup(
             vUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         vAdmin.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -958,20 +994,38 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnIniciarMouseClicked
+
         AdminJugador ad = new AdminJugador("./Jugadores.usr");
         ad.cargar();
-        boolean noesta = false;
+
         for (Jugador j : ad.getJugadores()) {
 
             if (j.getUser().equals(user.getText()) && j.getPass().equals(pass.getText())) {
+                jugadorActual = j;
                 pBar1.setMaximum(ad.getJugadores().indexOf(j) + 1);
                 break;
             }
         }
-        //pBar1.setMinimum(0);
+
+        pBar1.setMinimum(0);
         BuscarUser bu = new BuscarUser(pBar1, vBuscandoU, vUsuario, this);
         bu.start();
-        
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaUser.getModel();
+        if (!jugadorActual.getCarrosJ().isEmpty()) {
+            for (Carro c : jugadorActual.getCarrosJ()) {
+                Object[] datos = new Object[5];
+                datos[0] = c.getMarca();
+                datos[1] = c.getModelo();
+                datos[2] = c.getColor();
+                datos[3] = c.getAñoF();
+                datos[4] = c.getTipo();
+                modelo.addRow(datos);
+                tablaUser.setModel(modelo);
+            }
+        }
+
+
     }//GEN-LAST:event_bttnIniciarMouseClicked
 
     private void bttnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnCrearMouseClicked
@@ -1018,6 +1072,7 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Cuenta Eliminada");
         vUsuario.setVisible(false);
         this.setVisible(true);
+
     }//GEN-LAST:event_bttnEliminarCuentaMouseClicked
 
     private void bttnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnAgregarMouseClicked
@@ -1027,7 +1082,7 @@ public class Main extends javax.swing.JFrame {
         Object[] datos = new Object[5];
         datos[0] = cbMarca.getSelectedItem();
         datos[1] = cbModelo.getSelectedItem();
-        datos[2] = color.getRGB();
+        datos[2] = color;
         datos[3] = year;
         datos[4] = cbTipo.getSelectedItem();
         modelo.addRow(datos);
@@ -1187,27 +1242,30 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Circuito Agregado");
     }//GEN-LAST:event_btnAgregarCirMouseClicked
 
-    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
-        AdminCarro ad = new AdminCarro("./Carros.car");
-        ad.cargar();
-        for (Carro c : ad.getCarros()) {
-            DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
-            Object[] datos = new Object[5];
-            datos[0] = c.getMarca();
-            datos[1] = c.getModelo();
-            datos[2] = c.getColor().getRGB();
-            datos[3] = c.getAñoF();
-            datos[4] = c.getTipo();
-            modelo.addRow(datos);
-            comprar.setModel(modelo);
-        }
-
-    }//GEN-LAST:event_jTabbedPane2StateChanged
-
     private void bttnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnSalirMouseClicked
         vUsuario.setVisible(false);
         this.setVisible(true);
     }//GEN-LAST:event_bttnSalirMouseClicked
+
+    private void bttnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnComprarMouseClicked
+        if (jugadorActual.getSaldo() < carros.get(comprar.getSelectedRow()).getPrecio()) {
+            JOptionPane.showMessageDialog(this, "Ocupa Plata");
+        } else {
+            jugadorActual.setSaldo(jugadorActual.getSaldo() - carros.get(comprar.getSelectedRow()).getPrecio());
+            jugadorActual.getCarrosJ().add(carros.get(comprar.getSelectedRow()));
+
+            DefaultTableModel modelo = (DefaultTableModel) comprar.getModel();
+            Object[] datos = new Object[5];
+            datos[0] = carros.get(comprar.getSelectedRow()).getMarca();
+            datos[1] = carros.get(comprar.getSelectedRow()).getModelo();
+            datos[2] = carros.get(comprar.getSelectedRow()).getColor();
+            datos[3] = carros.get(comprar.getSelectedRow()).getAñoF();
+            datos[4] = carros.get(comprar.getSelectedRow()).getTipo();
+            modelo.addRow(datos);
+            comprar.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Compra Realizada");
+        }
+    }//GEN-LAST:event_bttnComprarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1268,6 +1326,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField correo;
     private javax.swing.JTextField curvas;
     private com.toedter.calendar.JDateChooser fNacimiento;
+    private javax.swing.JScrollPane garaje;
     private javax.swing.JTextField hp;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1314,6 +1373,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1324,13 +1384,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JScrollPane jtCarros;
     private javax.swing.JScrollPane jtComprar;
     private javax.swing.JScrollPane jtVender;
     private javax.swing.JTextField locacion;
@@ -1348,6 +1406,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField pais;
     private javax.swing.JPasswordField pass;
     private javax.swing.JTextField precio;
+    private javax.swing.JTabbedPane tab;
+    private javax.swing.JTable tablaUser;
     private javax.swing.JTextField tiempo;
     private javax.swing.JTextField tiempo1;
     private javax.swing.JTextField tipo;

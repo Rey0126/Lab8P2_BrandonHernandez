@@ -7,7 +7,9 @@ public class Partes implements Serializable{
     private String marca;
     private String clas;
     private double precio;
-
+    
+    private static final long serialUID = 575L;
+    
     public Partes() {
     }
 

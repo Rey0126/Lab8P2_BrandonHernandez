@@ -2,6 +2,7 @@
 package Lab8P2_BrandonHernandez;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Jugador implements Serializable{
     private String name;
@@ -11,8 +12,9 @@ public class Jugador implements Serializable{
     private String user;
     private String pass;
     private double saldo;
+    private ArrayList<Carro> carrosJ = new ArrayList();
     
-    private static final long serialUID = 0126L;
+    private static final long serialUID = 0162L;
 
     public Jugador() {
     }
@@ -83,6 +85,16 @@ public class Jugador implements Serializable{
         this.saldo = saldo;
     }
 
+    public ArrayList<Carro> getCarrosJ() {
+        return carrosJ;
+    }
+
+    public void setCarrosJ(ArrayList<Carro> carrosJ) {
+        this.carrosJ = carrosJ;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Nombre: " + name + "\nCorreo: " + correo + "\nPais: " + pais + "\nFecha Nacimiento: " + fechaN + "\nUsuario: " + user + "\nSaldo: " + saldo;

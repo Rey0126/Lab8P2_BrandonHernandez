@@ -10,18 +10,12 @@ public class BuscarUser extends Thread {
     private JDialog vBuscarUser;
     private JDialog vUser;
     private JFrame main;
-    private boolean seguir;
-    private int timer;
-    private int cont;
 
     public BuscarUser(JProgressBar jp, JDialog vBuscarUser, JDialog vUser, JFrame main) {
         this.jp = jp;
         this.vBuscarUser = vBuscarUser;
         this.vUser = vUser;
         this.main = main;
-        seguir = true;
-        timer = 0;
-        cont = 0;
     }
 
     public void run() {
@@ -33,7 +27,9 @@ public class BuscarUser extends Thread {
         
         AdminJugador ad = new AdminJugador("./Jugadores.usr");
         ad.cargar();  
-        for (int i = 1; i < jp.getMaximum(); i++) {
+        
+        for (int i = 1; i <= jp.getMaximum(); i++) {
+            
             jp.setValue(i);           
             try {
                 Thread.sleep(1000);
