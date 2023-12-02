@@ -17,6 +17,7 @@ public class Carro implements Serializable{
     private int hp;
     private int vp;
     private int tiempo;
+    private int tiempo1;
     private ArrayList<Partes> partes = new ArrayList();
     
     private static final long serialUID = 712L;
@@ -24,7 +25,7 @@ public class Carro implements Serializable{
     public Carro() {
     }
 
-    public Carro(String marca, String modelo, String tipo, Color color, double precio, String pais, String añoF, int hp, int vp,int tiempo) {
+    public Carro(String marca, String modelo, String tipo, Color color, double precio, String pais, String añoF, int hp, int vp,int tiempo, int tiempo1) {
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
@@ -35,6 +36,7 @@ public class Carro implements Serializable{
         this.hp = hp;
         this.vp = vp;
         this.tiempo = tiempo;
+        this.tiempo1 = tiempo1;
     }
 
     public String getMarca() {

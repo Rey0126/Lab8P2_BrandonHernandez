@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import lab6p2_brandonhernandez.Carro;
 
 public class AdminCarro {
     private ArrayList<Carro> carros = new ArrayList();
@@ -33,8 +32,8 @@ public class AdminCarro {
         this.archivo = archivo;
     }
     
-    public void setCarro(Carro c){
-        this.carros.add(c);
+    public void setCarro(Carro carro){
+        this.carros.add(carro);
     }
     
     public void cargar(){
